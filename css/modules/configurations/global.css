@@ -1,0 +1,11 @@
+body, ul{
+  margin: 0;
+  padding: 0;
+}
+ul{
+  list-style: none;
+}
+img{
+  display: block;
+  width: 100%;
+}
