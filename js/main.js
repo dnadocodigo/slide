@@ -1,8 +1,8 @@
 import * as debouce from "./modules/debounces/debounce.js";
-import Slide from "./modules/slides/slide.js";
+import { SlideNav } from "./modules/slides/slide.js";
 
-const slide = new Slide(".slide", ".slide-wrapper");
+const slide = new SlideNav(".slide", ".slide-wrapper");
 slide.init();
-slide.changeSlide(0);
-slide.activePrevSlide();
+slide.addArrow(".prev", ".next");
 
+console.log(slide);
