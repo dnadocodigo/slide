@@ -1,4 +1,5 @@
 import debounce from "../debounces/debounce.js";
+
 export class Slide {
   constructor(slide, wrapper) {
     this.slide = document.querySelector(slide);
@@ -30,11 +31,9 @@ export class Slide {
       event.preventDefault();
       this.distance.startX = event.clientX;
       moveType = "mousemove";
-      console.log(event);
     } else {
       this.distance.startX = event.changedTouches[0].clientX;
       moveType = "touchmove";
-      console.log(event);
     }
     this.wrapper.addEventListener(moveType, this.onMove);
     this.transition(false);
@@ -65,7 +64,6 @@ export class Slide {
     } else {
       this.changeSlide(this.index.active);
     }
-    console.log(this.distance.movement);
   }
 
   changeActiveClass() {
@@ -131,6 +129,7 @@ export class Slide {
   addResizeEvent() {
     window.addEventListener("resize", this.onResize);
   }
+
   bindEvents() {
     this.onStart = this.onStart.bind(this);
     this.onMove = this.onMove.bind(this);
@@ -154,7 +153,7 @@ export class Slide {
   }
 }
 
-export class SlideNav extends Slide {
+export default class SlideNav extends Slide {
   constructor(slide, wrapper) {
     super(slide, wrapper);
     this.bindControlEvents();
@@ -189,7 +188,6 @@ export class SlideNav extends Slide {
     item.addEventListener("click", (event) => {
       event.preventDefault();
       this.changeSlide(index);
-      
     });
     this.wrapper.addEventListener("changeEvent", this.activeControlItem);
   }
@@ -201,7 +199,6 @@ export class SlideNav extends Slide {
     this.controlArray[this.index.active].classList.add(this.ActiveClass);
   }
 
-  
   addControl(customControl) {
     this.control =
       document.querySelector(customControl) || this.creataControl();
@@ -210,6 +207,7 @@ export class SlideNav extends Slide {
     this.activeControlItem();
     this.controlArray.forEach(this.eventControl);
   }
+
   bindControlEvents() {
     this.eventControl = this.eventControl.bind(this);
     this.activeControlItem = this.activeControlItem.bind(this);
